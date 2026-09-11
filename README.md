@@ -39,19 +39,74 @@
 - 6.Identify high-value and at-risk customers.
 - 7.Build an interactive Power BI dashboard.
 - 8.Generate business recommendations from the analysis.
-
+---------------------------------------------------------------------------------------------------------------------------------
 ### 4. Data Cleaning — Python:
 The raw dataset was first cleaned using Python and Pandas.
 **Cleaning operations performed**
 - **1. Load the dataset**
- 
 ```
 import pandas as pd
 df = pd.read_csv(
     "sales_data_sample.csv",
     encoding="cp1252")
 ```
+- **2. Standardize column names**
+```
+df.columns = (
+    df.columns
+    .str.strip()
+    .str.lower()
+    .str.replace(" ", "_")
+)  
+```
+- **3. Remove unnecessary spaces**
+```
+for col in df.select_dtypes(include="object").columns:
+    df[col] = df[col].str.strip()
+```
+- **4.Remove duplicate records**
+```
+df = df.drop_duplicates()
+```
+- **5.Convert ORDERDATE**
+```
+df["orderdate"] = pd.to_datetime(
+    df["orderdate"],
+    errors="coerce"
+)
+```
+- **6.Convert numerical columns**
+```
+numeric_columns = [
+    "ordernumber",
+    "quantityordered",
+    "priceeach",
+    "orderlinenumber",
+    "sales",
+    "qtr_id",
+    "month_id",
+    "year_id",
+    "msrp"
+]
 
-
-
-
+for col in numeric_columns:
+    df[col] = pd.to_numeric(
+        df[col],
+        errors="coerce"
+    )
+```
+- **7.Check missing values**
+```
+df.isnull().sum()
+```
+- **8.Check duplicates**
+```
+df.duplicated().sum()
+```
+- **9. Export cleaned dataset**
+```
+df.to_csv(
+    "sales_data_cleaned.csv",
+    index=False
+)
+```
