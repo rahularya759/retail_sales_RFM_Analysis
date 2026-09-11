@@ -110,3 +110,34 @@ df.to_csv(
     index=False
 )
 ```
+---------------------------------------------------------------------------------------------------------------------------------
+### 5. PostgreSQL
+The cleaned dataset was imported into PostgreSQL for further analysis.
+**Why PostgreSQL?**
+PostgreSQL was used for:
+- Data storage
+- Data validation
+- SQL analysis
+- Aggregation
+- Window functions
+- Customer analysis
+- RFM calculation
+-------------------------------------------------------------------------------------------------------------------------------- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
