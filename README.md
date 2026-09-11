@@ -5,7 +5,7 @@
     customer purchasing behavior, product performance, and customer value.
     The project uses Python for data cleaning, PostgreSQL for data analysis and RFM calculations, and Power BI for interactive 
     visualization and business insights.
-    - **Tech stack**
+- **Tech stack**
     1.Python / Pandas — Data Cleaning & Preprocessing.
     2.PostgreSQL — Data Storage, SQL Analysis & RFM.
     3.Power BI — Dashboard & Data Visualization.
