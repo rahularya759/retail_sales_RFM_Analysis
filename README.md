@@ -113,8 +113,8 @@ df.to_csv(
 ---------------------------------------------------------------------------------------------------------------------------------
 ### 5. PostgreSQL
 The cleaned dataset was imported into PostgreSQL for further analysis.
-**Why PostgreSQL?**
-PostgreSQL was used for:
+- **Why PostgreSQL?**
+ PostgreSQL was used for:
 - Data storage
 - Data validation
 - SQL analysis
