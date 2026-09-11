@@ -460,28 +460,28 @@ ORDER BY rfm_total_score DESC;
 -----------------------------------------------------------------------------------------------------------------------------------------
 ### 9.16. Key Business Questions
 Your project should explicitly answer these questions:
-- **Sales**
+### Sales
 - What is the total revenue?
 - What is the monthly/quarterly sales trend?
 - Which year generated the highest revenue?
 - Which product line performs best?
  
-- **Customers**
+### Customers
 - Who are the top customers?
 - Which customers generate the most revenue?
 - How frequently do customers purchase?
 - Which customers are at risk?
 
-- **Products**
+### Products
 - Which product lines generate the most revenue?
 - Which products have the highest sales?
 - Which product categories have the highest quantity sold?
  
-- **Geography**
+### Geography
 - Which countries generate the highest revenue?
 - Which markets have the strongest customer base?
 
-- **RFM**
+### RFM
 - Who are the Champions?
 - Who are the Loyal Customers?
 - Who are the At-Risk Customers?
@@ -528,15 +528,15 @@ Sales-RFM-Analysis/
 ### 12. Skills Demonstrated
 
 This project demonstrates:
-- **1.Python
-- **2.Sql
-- **3.Power Bi
+- **1.Python**
+- **2.Sql**
+- **3.Power Bi**
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 ### 13.Final Project Summary
-```
+
 Sales Performance & Customer RFM Analysis is an end-to-end data analytics project that transforms raw transactional sales data into actionable business insights. Python and Pandas were used for data cleaning and preprocessing, PostgreSQL was used for data validation, SQL-based business analysis and RFM customer segmentation, and Power BI was used to develop interactive dashboards for sales, customer, product and market performance analysis.
-```
+
 
 
 
