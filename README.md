@@ -457,4 +457,87 @@ SELECT
 FROM customer_segments
 ORDER BY rfm_total_score DESC;
 ```
+-----------------------------------------------------------------------------------------------------------------------------------------
+### 9.16. Key Business Questions
+Your project should explicitly answer these questions:
+- **Sales**
+- What is the total revenue?
+- What is the monthly/quarterly sales trend?
+- Which year generated the highest revenue?
+- Which product line performs best?
+ 
+- **Customers**
+- Who are the top customers?
+- Which customers generate the most revenue?
+- How frequently do customers purchase?
+- Which customers are at risk?
+
+- **Products**
+- Which product lines generate the most revenue?
+- Which products have the highest sales?
+- Which product categories have the highest quantity sold?
+ 
+- **Geography**
+- Which countries generate the highest revenue?
+- Which markets have the strongest customer base?
+
+- **RFM**
+- Who are the Champions?
+- Who are the Loyal Customers?
+- Who are the At-Risk Customers?
+- Which customers should be targeted for reactivation?
+-----------------------------------------------------------------------------------------------------------------------------------------
+### 10.Business Recommendations
+
+Based on the analysis, recommendations can include:
+
+- **Customer Retention**
+```Focus on Champions and Loyal Customers through loyalty programs and exclusive offers.```
+
+- **Customer Reactivation**
+```Target At-Risk customers with personalized discounts and re-engagement campaigns.```
+
+- **Product Strategy**
+```Prioritize high-performing product lines while investigating weaker categories.```
+
+- **Market Strategy**
+```Focus marketing efforts on high-revenue countries and identify opportunities in lower-performing markets.```
+-----------------------------------------------------------------------------------------------------------------------------------------
+### 11.Project Workflow
+
+Your GitHub project architecture can look like this:
+```
+Sales-RFM-Analysis/
+│
+├── data/
+│   ├── sales_data_sample.csv
+│   └── sales_data_cleaned.csv
+│
+├── python/
+│   └── data_cleaning.py
+│
+├── sql/
+│   └── rfm_analysis.sql
+│
+├── powerbi/
+│   └── sales_rfm_dashboard.pbix
+│
+└── README.md
+```
+----------------------------------------------------------------------------------------------------------------------------------------
+### 12. Skills Demonstrated
+
+This project demonstrates:
+- **1.Python
+- **2.Sql
+- **3.Power Bi
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+### 13.Final Project Summary
+```
+Sales Performance & Customer RFM Analysis is an end-to-end data analytics project that transforms raw transactional sales data into actionable business insights. Python and Pandas were used for data cleaning and preprocessing, PostgreSQL was used for data validation, SQL-based business analysis and RFM customer segmentation, and Power BI was used to develop interactive dashboards for sales, customer, product and market performance analysis.
+```
+
+
+
 
