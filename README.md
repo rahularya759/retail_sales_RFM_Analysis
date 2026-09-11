@@ -6,11 +6,11 @@
     The project uses Python for data cleaning, PostgreSQL for data analysis and RFM calculations, and Power BI for interactive 
     visualization and business insights.
 - **Tech stack**
-**Python / Pandas**:  Data Cleaning & Preprocessing.
-**PostgreSQL**:  Data Storage, SQL Analysis & RFM.
-**Power BI**:  Dashboard & Data Visualization.
-**Excel/CSV**: Dataset & intermediate files.
-**GitHub**:  Project Documentation & Version Control.
+- **Python / Pandas**:  Data Cleaning & Preprocessing.
+- **PostgreSQL**:  Data Storage, SQL Analysis & RFM.
+- **Power BI**:  Dashboard & Data Visualization.
+- **Excel/CSV**: Dataset & intermediate files.
+- **GitHub**:  Project Documentation & Version Control.
 
 ### 2. Business Problem:
 ---------------------------------------------------------------------------------------------------------------------------------
