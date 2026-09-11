@@ -123,19 +123,77 @@ The cleaned dataset was imported into PostgreSQL for further analysis.
 - Customer analysis
 - RFM calculation
 -------------------------------------------------------------------------------------------------------------------------------- 
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 6. SQL Data Validation
+After importing the cleaned dataset, the following checks were performed.
+- **Check total records**
+```
+SELECT COUNT(*)
+FROM sales_data;
+```
+- **Check duplicate orders**
+```
+SELECT
+    ordernumber,
+    COUNT(*)
+FROM sales_data
+GROUP BY ordernumber
+HAVING COUNT(*) > 1;
+```
+- **Check missing values**
+```
+ SELECT
+    COUNT(*) FILTER (WHERE customername IS NULL) AS null_customer,
+    COUNT(*) FILTER (WHERE orderdate IS NULL) AS null_orderdate,
+    COUNT(*) FILTER (WHERE sales IS NULL) AS null_sales
+FROM sales_data;
+```
+-----------------------------------------------------------------------------------------------------------------------------------------
+### 7. Business Analysis Using SQL
+Several business questions were answered using PostgreSQL
+- **Total Revenue**
+```
+SELECT ROUND(SUM(sales), 2) AS total_revenue
+FROM sales_data;
+```
+- **Revenue by Product Line**
+```
+SELECT
+    productline,
+    ROUND(SUM(sales), 2) AS revenue
+FROM sales_data
+GROUP BY productline
+ORDER BY revenue DESC;
+```
+- **Revenue by Country**
+```
+SELECT
+    country,
+    ROUND(SUM(sales), 2) AS revenue
+FROM sales_data
+GROUP BY country
+ORDER BY revenue DESC;
+```
+- **Monthly Sales Trend**
+```
+SELECT
+    year_id,
+    month_id,
+    ROUND(SUM(sales), 2) AS monthly_sales
+FROM sales_data
+GROUP BY year_id, month_id
+ORDER BY year_id, month_id;
+```
+- **Top Customers**
+```
+SELECT
+    customername,
+    ROUND(SUM(sales), 2) AS total_sales
+FROM sales_data
+GROUP BY customername
+ORDER BY total_sales DESC
+LIMIT 10;
+```
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 
 
