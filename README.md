@@ -32,15 +32,25 @@
 - 2.Store the cleaned dataset in PostgreSQL.
 - 3.Perform exploratory and business analysis using SQL.
 - 4.Calculate RFM metrics:
-       Recency
-       Frequency
+       Recency,
+       Frequency,
        Monetary
 - 5.Segment customers based on their purchasing behavior.
 - 6.Identify high-value and at-risk customers.
 - 7.Build an interactive Power BI dashboard.
 - 8.Generate business recommendations from the analysis.
 
-
+### 4. Data Cleaning — Python:
+The raw dataset was first cleaned using Python and Pandas.
+**Cleaning operations performed**
+- **1. Load the dataset**
+ 
+```
+import pandas as pd
+df = pd.read_csv(
+    "sales_data_sample.csv",
+    encoding="cp1252")
+```
 
 
 
