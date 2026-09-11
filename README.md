@@ -5,7 +5,7 @@
     customer purchasing behavior, product performance, and customer value.
     The project uses Python for data cleaning, PostgreSQL for data analysis and RFM calculations, and Power BI for interactive 
     visualization and business insights.
-- **Tech stack**
+ **Tech stack**
 - **Python / Pandas**:  Data Cleaning & Preprocessing.
 - **PostgreSQL**:  Data Storage, SQL Analysis & RFM.
 - **Power BI**:  Dashboard & Data Visualization.
@@ -16,7 +16,7 @@
 ---------------------------------------------------------------------------------------------------------------------------------
      A retail/e-commerce business generates large amounts of sales transaction data, but raw transactional data alone does not 
      provide clear answers to important business questions.
-- **Actinable insight**
+ **Actinable insight**
 - Which products generate the highest revenue?
 - Which countries/markets perform best?
 - Which customers contribute the most revenue?
