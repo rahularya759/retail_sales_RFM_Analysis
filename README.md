@@ -314,6 +314,7 @@ select * from rfm_final;
 **Customer Segmentation**
 
 Based on RFM scores, customers can be classified into segments such as:
+
 **1.Champions**
 High Recency + High Frequency + High Monetary
 - **Action**: Reward with loyalty programs and exclusive offers.
@@ -458,7 +459,7 @@ FROM customer_segments
 ORDER BY rfm_total_score DESC;
 ```
 -----------------------------------------------------------------------------------------------------------------------------------------
-### 9.16. Key Business Questions
+### 9. Key Business Questions
 Your project should explicitly answer these questions:
 ### Sales
 - What is the total revenue?
