@@ -6,15 +6,23 @@
     The project uses Python for data cleaning, PostgreSQL for data analysis and RFM calculations, and Power BI for interactive 
     visualization and business insights.
 - **Tech stack**
-    1.Python / Pandas — Data Cleaning & Preprocessing.
-    2.PostgreSQL — Data Storage, SQL Analysis & RFM.
-    3.Power BI — Dashboard & Data Visualization.
-    4.Excel/CSV — Dataset & intermediate files.
-    5.GitHub — Project Documentation & Version Control.
+-Python / Pandas — Data Cleaning & Preprocessing.
+-PostgreSQL — Data Storage, SQL Analysis & RFM.
+-Power BI — Dashboard & Data Visualization.
+-Excel/CSV — Dataset & intermediate files.
+-GitHub — Project Documentation & Version Control.
 
 ### 2. Business Problem:
------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
      A retail/e-commerce business generates large amounts of sales transaction data, but raw transactional data alone does not 
      provide clear answers to important business questions.
-     The objective is to transform raw sales data into actionable insights such as:
+- **Actinable insight**
+-Which products generate the highest revenue?
+-Which countries/markets perform best?
+-Which customers contribute the most revenue?
+-How does sales performance change over time?
+-Which customers are loyal and frequent buyers?
+-Which customers are at risk of becoming inactive?
+-Which customer segments should receive marketing attention?
+-Which product categories generate the most revenue?     
 
