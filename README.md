@@ -124,6 +124,36 @@ The cleaned dataset was imported into PostgreSQL for further analysis.
 - RFM calculation
 -------------------------------------------------------------------------------------------------------------------------------- 
 ### 6. SQL Data Validation
+- **creating table**
+```
+CREATE TABLE sales_data (
+    ordernumber        INT,
+    quantityordered    INT,
+    priceeach          NUMERIC,
+    orderlinenumber    INT,
+    sales              NUMERIC(10,2),
+    orderdate          DATE,
+    status             VARCHAR(100),
+    qtr_id             INT,
+    month_id           INT,
+    year_id            INT,
+    productline        VARCHAR(100),
+    msrp               NUMERIC(10,2),
+    productcode        VARCHAR(100),
+    customername       VARCHAR(150),
+    phone              VARCHAR(100),
+    addressline1       VARCHAR(200),
+    addressline2       VARCHAR(200),
+    city               VARCHAR(100),
+    state              VARCHAR(100),
+    postalcode         VARCHAR(100),
+    country            VARCHAR(100),
+    territory          VARCHAR(100),
+    contactlastname    VARCHAR(100),
+    contactfirstname   VARCHAR(100),
+    dealsize           VARCHAR(100)
+);
+```
 After importing the cleaned dataset, the following checks were performed.
 - **Check total records**
 ```
@@ -194,8 +224,214 @@ ORDER BY total_sales DESC
 LIMIT 10;
 ```
 -----------------------------------------------------------------------------------------------------------------------------------------
+### 8. RFM Analysis
+A major component of the project is RFM Customer Segmentation.
 
+**What is RFM?**
+**RFM = Recency + Frequency + Monetary**
 
+- **Recency**
+How recently did the customer purchase?
+```
+Lower Recency = Better
+```
+- **Frequency**
+How often does the customer purchase?
+```
+Higher Frequency = Better
+```
+- **Monetary**
+How much money has the customer spent?
+```
+Higher Monetary = Better
+```
+- **Check the date range**
+```
+SELECT
+    MIN(orderdate) AS first_order_date,
+    MAX(orderdate) AS last_order_date
+FROM sales_data;
+```
+- **Create the customer-level RFM table**
+```
+CREATE TABLE customer_rfm AS
+SELECT
+    customername,
+    (
+        MAX(orderdate)::date
+        - (SELECT MAX(orderdate)::date FROM sales_data)
+    ) * -1 + 1 AS recency,
+    COUNT(DISTINCT ordernumber) AS frequency,
+    ROUND(SUM(sales), 2) AS monetary
+FROM sales_data
+WHERE status = 'Shipped'
+GROUP BY customername;
+```
+- **Create RFM scores**
+```
+CREATE TABLE rfm_scores AS
+SELECT
+    customername,
+    recency,
+    frequency,
+    monetary,
+    NTILE(5) OVER (
+        ORDER BY recency DESC
+    ) AS r_score,
 
+    NTILE(5) OVER (
+        ORDER BY frequency
+    ) AS f_score,
 
+    NTILE(5) OVER (
+        ORDER BY monetary
+    ) AS m_score
+FROM customer_rfm;
+```
+- **Create the combined RFM score**
+```
+CREATE TABLE rfm_final AS
+SELECT
+    customername,
+    recency,
+    frequency,
+    monetary,
+
+    r_score,
+    f_score,
+    m_score,
+
+    CONCAT(
+        r_score,
+        f_score,
+        m_score
+    ) AS rfm_score,
+
+    r_score + f_score + m_score AS rfm_total_score
+FROM rfm_scores;
+select * from rfm_final;
+```
+- **Create customer segments**
+```
+CREATE TABLE customer_segments AS
+SELECT
+    *,
+    CASE
+
+        WHEN r_score >= 4
+         AND f_score >= 4
+         AND m_score >= 4
+        THEN 'Champions'
+
+        WHEN r_score >= 4
+         AND f_score >= 3
+        THEN 'Loyal Customers'
+
+        WHEN r_score >= 4
+         AND f_score <= 2
+        THEN 'Recent Customers'
+
+        WHEN r_score = 3
+         AND f_score >= 3
+        THEN 'Potential Loyalists'
+
+        WHEN r_score <= 2
+         AND f_score >= 4
+         AND m_score >= 4
+        THEN 'At Risk High Value'
+
+        WHEN r_score <= 2
+         AND f_score >= 3
+        THEN 'At Risk'
+
+        WHEN r_score <= 2
+         AND f_score <= 2
+         AND m_score >= 3
+        THEN 'Hibernating High Value'
+
+        WHEN r_score <= 2
+         AND f_score <= 2
+        THEN 'Lost Customers'
+
+        ELSE 'Others'
+
+    END AS customer_segment
+FROM rfm_final;
+```
+- **customer segments**
+```
+SELECT
+    customer_segment,
+    COUNT(*) AS customer_count
+FROM customer_segments
+GROUP BY customer_segment
+ORDER BY customer_count DESC;
+```
+- **Calculate revenue by segment**
+```
+SELECT
+    customer_segment,
+    COUNT(*) AS customers,
+    ROUND(SUM(monetary), 2) AS total_revenue,
+    ROUND(AVG(monetary), 2) AS avg_customer_value,
+    ROUND(AVG(frequency), 2) AS avg_frequency,
+    ROUND(AVG(recency), 2) AS avg_recency
+FROM customer_segments
+GROUP BY customer_segment
+ORDER BY total_revenue DESC;
+```
+- **find the champions**
+```
+SELECT
+    customername,
+    recency,
+    frequency,
+    monetary,
+    rfm_score,
+    rfm_total_score
+FROM customer_segments
+WHERE customer_segment = 'Champions'
+ORDER BY monetary DESC;
+```
+- **find At-risk high value customers**
+```
+SELECT
+    customername,
+    recency,
+    frequency,
+    monetary,
+    rfm_score,
+    rfm_total_score
+FROM customer_segments
+WHERE customer_segment = 'At Risk High Value'
+ORDER BY monetary DESC;
+```
+- **find most loyal customer**
+```
+SELECT
+    customername,
+    frequency,
+    monetary,
+    recency
+FROM customer_segments
+ORDER BY frequency DESC
+LIMIT 20;
+```
+
+- **final dataset for power bi**
+```
+SELECT
+    customername,
+    recency,
+    frequency,
+    monetary,
+    r_score,
+    f_score,
+    m_score,
+    rfm_score,
+    rfm_total_score,
+    customer_segment
+FROM customer_segments
+ORDER BY rfm_total_score DESC;
+```
 
