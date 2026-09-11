@@ -311,6 +311,29 @@ SELECT
 FROM rfm_scores;
 select * from rfm_final;
 ```
+**Customer Segmentation**
+
+Based on RFM scores, customers can be classified into segments such as:
+- **1.Champions**
+High Recency + High Frequency + High Monetary
+**Action**: Reward with loyalty programs and exclusive offers.
+
+- **2.Loyal Customers**
+Frequent purchasers with strong spending.
+**Action**: Encourage repeat purchases.
+
+- **3.Potential Loyalists**
+Recent customers with moderate frequency.
+**Action**: Convert them into loyal customers.
+
+- **4.At Risk**
+Previously valuable customers who haven't purchased recently.
+**Action**: Run reactivation campaigns.
+
+- **5.Lost Customers**
+Low Recency, Frequency and Monetary value.
+**Action**: Consider targeted win-back campaigns.
+  
 - **Create customer segments**
 ```
 CREATE TABLE customer_segments AS
